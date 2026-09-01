@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const usersRouter = require('./routes/users');
@@ -7,7 +9,7 @@ const app = express();
 const { PORT = 3000 } = process.env;
 
 mongoose
-  .connect('mongodb://localhost:27017/aroundb')
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('Conectado ao MongoDB');
   })
