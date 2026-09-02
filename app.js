@@ -37,6 +37,13 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  req.user = {
+    _id: '6a974979f28b5d0b6b71baf4',
+  };
+  next();
+});
+
 app.use('/api/users', usersRouter);
 app.use('/api/cards', cardsRouter);
 
