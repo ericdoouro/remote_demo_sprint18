@@ -20,9 +20,20 @@ mongoose
 app.use(express.json());
 
 app.use((req, res, next) => {
-  req.user = {
-    _id: '6a7a7466b20cccf7a6a1565b',
-  };
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+  );
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET,POST,PATCH,PUT,DELETE,OPTIONS',
+  );
+
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+
   next();
 });
 
