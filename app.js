@@ -20,11 +20,14 @@ mongoose
 app.use(express.json());
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+    'Access-Control-Allow-Origin',
+    req.headers.origin === 'http://localhost:3000' ||
+      req.headers.origin === 'https://web-project-around-auth-iota.vercel.app'
+      ? req.headers.origin
+      : 'null',
   );
+  
   res.header(
     'Access-Control-Allow-Methods',
     'GET,POST,PATCH,PUT,DELETE,OPTIONS',
